@@ -1,19 +1,27 @@
 package main
 
 import (
+	"io/fs"
 	"log"
 	"net/http"
 	"time"
 
+	"embed"
+
 	"github.com/ikeohachidi/view-github-static/cmd"
 )
 
+//go:embed "web"
+var web embed.FS
+
 func main() {
 	router := http.NewServeMux()
+	fSys, err := fs.Sub(web, "web")
+	if err != nil {
+		log.Fatalf("unable to read embed files: %v", err)
+	}
 
-	fs := http.FileServer(http.Dir("./web"))
-
-	router.Handle("GET /", fs)
+	router.Handle("GET /", http.FileServer(http.FS(fSys)))
 
 	router.HandleFunc("POST /open", cmd.Open)
 	router.HandleFunc("GET /{username}/{repo}/*", cmd.Navigate)
