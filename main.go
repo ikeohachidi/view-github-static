@@ -27,12 +27,12 @@ func main() {
 	router.HandleFunc("GET /{username}/{repo}/*", cmd.Navigate)
 
 	server := http.Server{
-		Addr:         ":8080",
+		Addr:         ":8000",
 		Handler:      router,
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
 
-	log.Print("Listening on port 8080")
+	log.Print("Listening on port 8000")
 	log.Fatal(server.ListenAndServe())
 }
