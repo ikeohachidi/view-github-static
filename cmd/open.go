@@ -3,11 +3,14 @@ package cmd
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func Open(w http.ResponseWriter, r *http.Request) {
 	page := r.PostFormValue("page")
 
-	url := fmt.Sprintf("http://localhost:8080/%s/", page)
+	urlEnv := os.Getenv("URL")
+
+	url := fmt.Sprintf("%s/%s/", urlEnv, page)
 	http.Redirect(w, r, url, http.StatusMovedPermanently)
 }
