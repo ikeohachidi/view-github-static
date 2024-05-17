@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github static pages view</title>
+    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="./favicon.png">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="welcome">
+        <h1>View Github Static Pages</h1>
+        <p>Easily view static websites from github repos here</p>
+    </div>
+
+    <form action="/open" method="post" target="_blank">
+        <div class="egs">
+            <p>Eg. Njidekaa/Flexbox-Grid-Layout</p>
+            <p>Eg. GozzAgu/KitHub-Project/public</p>
+            <p>(Basically path to an index.html file)</p>
+        </div>
+        <div class="input-wrapper">
+            <input type="text" name="page" placeholder="github-username/repo">
+            <button type="submit">Open Repo</button>
+        </div>
+    </form>
+
+    <footer>
+        <a href="https://github.com/ikeohachidi/view-github-static" target="_blank">Github</a>
+    </footer>
+</body>
+</html>
